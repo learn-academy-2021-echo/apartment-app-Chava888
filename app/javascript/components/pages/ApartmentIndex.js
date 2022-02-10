@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class ApartmentIndex extends Component {
   render() {
@@ -8,19 +9,11 @@ class ApartmentIndex extends Component {
       <>
         <h2>Apartment List</h2>
         <div>
-          {apartments.map((apartment, index) => {
+          {apartments.map((apartment) => {
             return (
-              <ul key={index}>
-                <li>{`Apartment Location: ${apartment.street}  ${apartment.city}   ${apartment.state}`}</li>
-                {/* <li>{`Apartment Rental Price: $${apartment.manager_rental_price}`}</li>
-                <li>{`Apartment Number of Bedrooms: ${apartment.number_of_bedrooms}`}</li>
-                <li>{`Apartment Number of Bathrooms: ${apartment.number_of_bedrooms}`}</li>
-                <li>{`Pets Allowed: ${
-                  apartment.allow_pets ? "Yes" : "No"
-                }`}</li>
-                <li>{`Manager Name: ${apartment.manager_name}`}</li>
-                <li>{`Contact Email: ${apartment.manager_contact_email}`}</li> */}
-              </ul>
+              <NavLink to={`/apartments/${apartment.id}`} key={apartment.id}>
+                <p>{`Apartment Location: ${apartment.street}  ${apartment.city}   ${apartment.state}`}</p>
+              </NavLink>
             );
           })}
         </div>
