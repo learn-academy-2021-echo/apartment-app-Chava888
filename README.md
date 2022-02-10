@@ -24,3 +24,4 @@ Things you may want to cover:
 - Add the react-routing: $ yarn add react-router-dom@5.3.0
 - Code line to separate React and Rails routing, prevent conflict: $get '\*path', to: 'home#index', constraints: ->(request){ request.format.html? }
 - Create a logout for device by get, config => initializers => devise.rb: $config.sign_out_via = :get
+- Create view documents for devise routes: $rails generate devise:views
