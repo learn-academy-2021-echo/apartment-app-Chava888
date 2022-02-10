@@ -23,9 +23,11 @@ class Header extends Component {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
-            <NavLink to="/apartments">Apartments</NavLink>
-          </li>
+          {logged_in && (
+            <li>
+              <NavLink to="/apartments">Apartments</NavLink>
+            </li>
+          )}
 
           {!logged_in && (
             <li>
