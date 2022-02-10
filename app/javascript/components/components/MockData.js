@@ -1,5 +1,6 @@
 const apartments = [
   {
+    id: 1,
     user_id: 1,
     street: "444 B St.",
     city: "Developer",
@@ -12,6 +13,7 @@ const apartments = [
     allow_pets: false,
   },
   {
+    id: 2,
     user_id: 1,
     street: "3742 Hamill Avenue",
     city: "San Diego",
@@ -24,6 +26,7 @@ const apartments = [
     allow_pets: true,
   },
   {
+    id: 3,
     user_id: 1,
     street: "814 Carriage Court",
     city: "San Diego",
@@ -36,6 +39,7 @@ const apartments = [
     allow_pets: true,
   },
   {
+    id: 4,
     user_id: 1,
     street: "3956 Poplar Avenue",
     city: "San Diego",

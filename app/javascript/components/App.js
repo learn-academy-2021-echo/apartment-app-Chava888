@@ -4,6 +4,7 @@ import ApartmentIndex from "./pages/ApartmentIndex";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import apartments from "./components/MockData";
+import ApartmentShow from "./pages/ApartmentShow";
 
 class App extends Component {
   constructor(props) {
@@ -20,11 +21,26 @@ class App extends Component {
           <Header {...this.props} />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/apartmentsindex" component={ApartmentIndex} />
+            <Route
+              path="/apartments"
+              render={(props) => (
+                <ApartmentIndex apartments={this.state.apartments} />
+              )}
+            />
+            <Route
+              path="/apartments/:id"
+              render={(props) => {
+                let apartmentId = +props.match.params.id;
+                let apartment = this.state.apartments.find(
+                  (apartment) => apartment.id === apartmentId
+                );
+                return <ApartmentShow apartment={apartment} />;
+              }}
+            />
 
             {/* <Route path="/apartments/new" component={ApartmentNew} /> */}
             {/* <Route path="/apartments/:id/edit" component={ApartmentEdit} /> */}
-            {/* <Route path="/apartmentshow" component={ApartmentShow} /> */}
+
             {/* <Route component={NotFound}/> */}
           </Switch>
         </Router>
