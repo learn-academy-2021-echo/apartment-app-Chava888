@@ -7,7 +7,7 @@ class ApartmentShow extends Component {
       <>
         <h2>{`Details for Apartment: ${apartment.street}  ${apartment.city}   ${apartment.state}`}</h2>
 
-        <li>{`Rental Price: $${apartment.manager_rental_price}`}</li>
+        <li>{`Rental Price: $${apartment.monthly_rental_price}`}</li>
         <li>{`Number of Bedrooms: ${apartment.number_of_bedrooms}`}</li>
         <li>{`Number of Bathrooms: ${apartment.number_of_bedrooms}`}</li>
         <li>{`Pets Allowed: ${apartment.allow_pets ? "Yes" : "No"}`}</li>

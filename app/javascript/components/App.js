@@ -3,16 +3,27 @@ import Home from "./pages/Home";
 import ApartmentIndex from "./pages/ApartmentIndex";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import apartments from "./components/MockData";
 import ApartmentShow from "./pages/ApartmentShow";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apartments: apartments,
+      apartments: [],
     };
   }
+
+  componentDidMount() {
+    this.readApartment();
+  }
+
+  readApartment = () => {
+    fetch("http://localhost:3000/apartments")
+      .then((response) => response.json())
+      //set the state with the data from the backend into the empty array
+      .then((apartmentsArray) => this.setState({ apartments: apartmentsArray }))
+      .catch((errors) => console.log("Apartment read errors", errors));
+  };
 
   render() {
     return (
