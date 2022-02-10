@@ -20,13 +20,6 @@ class App extends Component {
         <Router>
           <Header {...this.props} />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              path="/apartments"
-              render={(props) => (
-                <ApartmentIndex apartments={this.state.apartments} />
-              )}
-            />
             <Route
               path="/apartments/:id"
               render={(props) => {
@@ -37,7 +30,13 @@ class App extends Component {
                 return <ApartmentShow apartment={apartment} />;
               }}
             />
-
+            <Route
+              path="/apartments"
+              render={(props) => (
+                <ApartmentIndex apartments={this.state.apartments} />
+              )}
+            />
+            <Route exact path="/" component={Home} />
             {/* <Route path="/apartments/new" component={ApartmentNew} /> */}
             {/* <Route path="/apartments/:id/edit" component={ApartmentEdit} /> */}
 

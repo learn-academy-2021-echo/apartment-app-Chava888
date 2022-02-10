@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 class ApartmentIndex extends Component {
   render() {
-    let apartments = this.props.apartments;
+    let { apartments } = this.props;
 
     return (
       <>
