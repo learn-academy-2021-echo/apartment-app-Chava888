@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import apartments from "../components/MockData";
 
 class ApartmentIndex extends Component {
   render() {
-    let data = apartments;
+    let apartments = this.props.apartments;
 
     return (
       <>
         <h2>Apartment List</h2>
         <div>
-          {data.map((apartment, index) => {
+          {apartments.map((apartment, index) => {
             return (
               <ul key={index}>
                 <li>{`Apartment Location: ${apartment.street}  ${apartment.city}   ${apartment.state}`}</li>
