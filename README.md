@@ -19,3 +19,7 @@ Things you may want to cover:
 - Create a model for apartments $rails generate resource Apartment street:string city:string state:string manager_name:string manager_contact_email:string monthly_rental_price:float number_of_bedrooms:integer number_of_bathrooms:float allow_pets:boolean
 - Create a one to many relationship with user(One) to apartment(Many) $has_many :apartments, $belongs_to :user
 - Create a column for user_id(one to many relationship) $rails generate migration add_column_foreign_key_to_Apartment then do a $rails db:migrate
+- Add mailer settings: $config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+- Passed props to the App component
+- Add the react-routing: $ yarn add react-router-dom@5.3.0
+- Code line to separate React and Rails routing, prevent conflict: $get '\*path', to: 'home#index', constraints: ->(request){ request.format.html? }
