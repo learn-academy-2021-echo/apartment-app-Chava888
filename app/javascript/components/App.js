@@ -10,9 +10,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apartments: apartments,
+      apartments: [],
     };
   }
+
+componentDidMount(){
+  this.readApartment()
+}
+
+readApartment = () => {
+  fetch("http://localhost:3000/apartments")
+  .then((response)=>(response.json())
+  //set the state with the data from the backend into the empty array
+  .then((apartmentsArray)=>this.setState({apartments:})
+}
+
 
   render() {
     return (
