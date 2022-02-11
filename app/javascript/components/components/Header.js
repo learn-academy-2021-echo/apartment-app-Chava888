@@ -41,6 +41,11 @@ class Header extends Component {
           )}
           {logged_in && (
             <li>
+              <NavLink to="/apartmentsnew">Add Apartment</NavLink>
+            </li>
+          )}
+          {logged_in && (
+            <li>
               <a href={sign_out_route}>Log Out</a>
             </li>
           )}
