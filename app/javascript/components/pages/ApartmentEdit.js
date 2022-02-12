@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
-class ApartmentNew extends Component {
+class ApartmentEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
       newApartment: {
-        street: "",
+        street: this.props.aparment.street,
         city: "",
         state: "",
         manager_name: "",
@@ -21,23 +21,10 @@ class ApartmentNew extends Component {
     };
   }
 
-  handleChange = (e) => {
-    // destructuring form out of state
-    let { newApartment } = this.state;
-    newApartment[e.target.name] = e.target.value;
-    // setting state to the updated form content
-    this.setState({ newApartment: newApartment });
-  };
-
-  handleSubmit = () => {
-    this.props.createApartment(this.state.newApartment);
-    this.setState({ submitted: true });
-  };
-
   render() {
     return (
       <>
-        <h2>Add Apartment</h2>
+        <h2>Edit Apartment</h2>
         <form>
           <label htmlFor="street">Street</label>
           <input
@@ -122,4 +109,4 @@ class ApartmentNew extends Component {
   }
 }
 
-export default ApartmentNew;
+export default ApartmentEdit;

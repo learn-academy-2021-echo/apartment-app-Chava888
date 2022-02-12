@@ -25,3 +25,4 @@ Things you may want to cover:
 - Code line to separate React and Rails routing, prevent conflict: $get '\*path', to: 'home#index', constraints: ->(request){ request.format.html? }
 - Create a logout for device by get, config => initializers => devise.rb: $config.sign_out_via = :get
 - Create view documents for devise routes: $rails generate devise:views
+- Added to the application_controller, allow POST requests: $skip_before_action :verify_authenticity_token

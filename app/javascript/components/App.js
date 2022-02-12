@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ApartmentShow from "./pages/ApartmentShow";
 import ApartmentNew from "./pages/ApartmentNew";
+import ApartmentEdit from "./pages/ApartmentEdit";
+import NotFound from "./pages/NotFound";
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +29,7 @@ class App extends Component {
   };
 
   createApartment = (newApartment) => {
+    console.log(newApartment);
     fetch("http://localhost:3000/apartments", {
       //Convert an object to a string
       body: JSON.stringify(newApartment),
@@ -42,7 +45,45 @@ class App extends Component {
       .catch((errors) => console.log("Apartment create errors:", errors));
   };
 
+  updateApartment = (apartment, id) => {
+    fetch(`http://localhost:3000/apartments/${id}`, {
+      //converting an object to a string
+      body: JSON.stringify(apartment),
+      //specify the info being sent in JSON and the info returning should be JSON
+      headers: {
+        "Content-Type": "application/json",
+      },
+      //HTTP verb so the correct endpoint is invoked on the server
+      method: "PATCH",
+    })
+      .then((response) => response.json())
+      .then((payload) => this.readApartment())
+      .catch((errors) => console.log("Apartment update errors:", errors));
+  };
+
+  deleteApartment = (user_id, id) => {
+    fetch(`http://localhost:3000/apartments/${id}`, {
+      //Convert an object to a string
+      body: JSON.stringify({ user_id, id }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((payload) => this.readApartment())
+      .catch((errors) => console.log("delete errors:", errors));
+  };
+
   render() {
+    const {
+      logged_in,
+      current_user,
+      new_user_route,
+      sign_in_route,
+      sign_out_route,
+    } = this.props;
+
     return (
       <>
         <Router>
@@ -51,8 +92,26 @@ class App extends Component {
             <Route
               path="/apartmentsnew"
               render={(props) => (
-                <ApartmentNew createApartment={this.createApartment} />
+                <ApartmentNew
+                  createApartment={this.createApartment}
+                  current_user={current_user}
+                />
               )}
+            />
+            <Route
+              path="/apartments/:id/edit"
+              render={(props) => {
+                let apartmentId = +props.match.params.id;
+                let apartment = this.state.apartments.find(
+                  (apartment) => apartment.id === apartmentId
+                );
+                return (
+                  <ApartmentEdit
+                    apartment={apartment}
+                    update={this.updateApartment}
+                  />
+                );
+              }}
             />
             <Route
               path="/apartments/:id"
@@ -61,7 +120,13 @@ class App extends Component {
                 let apartment = this.state.apartments.find(
                   (apartment) => apartment.id === apartmentId
                 );
-                return <ApartmentShow apartment={apartment} />;
+                return (
+                  <ApartmentShow
+                    current_user={current_user}
+                    apartment={apartment}
+                    deleteApartment={this.deleteApartment}
+                  />
+                );
               }}
             />
 
@@ -73,9 +138,7 @@ class App extends Component {
             />
             <Route exact path="/" component={Home} />
 
-            {/* <Route path="/apartments/:id/edit" component={ApartmentEdit} /> */}
-
-            {/* <Route component={NotFound}/> */}
+            <Route path="*" component={NotFound} />
           </Switch>
         </Router>
       </>
