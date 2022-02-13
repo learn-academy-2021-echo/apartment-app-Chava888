@@ -11,17 +11,17 @@ class ApartmentsController < ApplicationController
         if user_signed_in?
             user = User.find(params[:user_id])
             apartment = user.apartments.create(apartment_params)
-            redirect_to "http://localhost:3000/apartments"
+            render json: apartment
         else
             render json: 'please log-in you are not authorized'
         end
     end
     def update
         if user_signed_in?
-            user = User.find(params[:user_id])
-            apartment = user.apartments.find(params[:id])
+            user = User.find(params[:apartment][:user_id])
+            apartment = user.apartments.find(params[:apartment][:id])
             apartment.update(apartment_params)
-            redirect_to "http://localhost:3000/apartments/#{params[:id]}"
+            render json: apartment
         else
             render json: 'please log-in you are not authorized'
         end
@@ -31,7 +31,7 @@ class ApartmentsController < ApplicationController
             user = User.find(params[:user_id])
             apartment = user.apartments.find(params[:id])
             apartment.destroy
-            redirect_to "http://localhost:3000/apartments"
+            render json: apartment
             else
             render json: 'please log-in you are not authorized'
         end

@@ -29,7 +29,6 @@ class App extends Component {
   };
 
   createApartment = (newApartment) => {
-    console.log(newApartment);
     fetch("http://localhost:3000/apartments", {
       //Convert an object to a string
       body: JSON.stringify(newApartment),
@@ -45,8 +44,8 @@ class App extends Component {
       .catch((errors) => console.log("Apartment create errors:", errors));
   };
 
-  updateApartment = (apartment, id) => {
-    fetch(`http://localhost:3000/apartments/${id}`, {
+  updateApartment = (apartment) => {
+    fetch(`http://localhost:3000/apartments/${apartment.id}`, {
       //converting an object to a string
       body: JSON.stringify(apartment),
       //specify the info being sent in JSON and the info returning should be JSON
@@ -108,7 +107,8 @@ class App extends Component {
                 return (
                   <ApartmentEdit
                     apartment={apartment}
-                    update={this.updateApartment}
+                    current_user={current_user}
+                    updateApartment={this.updateApartment}
                   />
                 );
               }}
